@@ -19,17 +19,12 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      - name: Install Gradle
-        run: |
-          # Install Gradle manually
-          wget https://services.gradle.org/distributions/gradle-7.4-bin.zip
-          unzip gradle-7.4-bin.zip
-          echo "$GITHUB_WORKSPACE/gradle-7.4/bin" >> $GITHUB_PATH
-
       - name: Generate Gradle Wrapper
         run: |
-          # Generate gradlew using the installed Gradle
-          gradle wrapper
+          # Delete any existing gradlew files to avoid conflicts
+          rm -rf gradlew gradlew.bat gradle/
+          # Generate a fresh Gradle Wrapper with the correct version
+          gradle wrapper --gradle-version 7.5
 
       - name: Build APK
         run: ./gradlew assembleDebug
