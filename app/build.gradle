@@ -6,6 +6,8 @@ plugins {
 android {
     compileSdkVersion 33
 
+    namespace 'com.example.summerizerapp' // Add this line
+
     defaultConfig {
         applicationId "com.example.summerizerapp"
         minSdkVersion 21
